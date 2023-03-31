@@ -16,7 +16,6 @@ public class NotaFiscalSubscribe implements Subscriber<NotaFiscal> {
   public void onSubscribe(Subscription subscription) {
     System.out.println("Chamando o onSubscribe!!");
     this.subscription = subscription;
-    this.subscription.request(3);
   }
 
   @Override

@@ -18,24 +18,17 @@ public class TesteEnvioNaoBloqueante {
 		ExecutorService newFixedThreadPool = Executors.newFixedThreadPool(2);
 
 		NotaFiscal primeiraNotaFiscal = new NotaFiscal(">> Joao", 39.99, LocalDate.now());
-		NotaFiscal segundaNotaFiscal = new NotaFiscal(">> Renato", 39.99, LocalDate.now());
-		NotaFiscal terceiraNotaFiscal = new NotaFiscal(">> Paulo", 39.99, LocalDate.now());
 
 		/*
 		 * Segundo parametro: número de quantas mensagens eu vou processar por vez
 		 */
-		//SubmissionPublisher<NotaFiscal> publisher = new SubmissionPublisher<>(newFixedThreadPool, 3);
-
-
-		SubmissionPublisher<NotaFiscal> publisher = new SubmissionPublisher<>();
+		SubmissionPublisher<NotaFiscal> publisher = new SubmissionPublisher<>(newFixedThreadPool, 3);
 
 
 		NotaFiscalSubscribe subscribe = new NotaFiscalSubscribe();
 		publisher.subscribe(subscribe);
 
 		publisher.submit(primeiraNotaFiscal);
-		publisher.submit(segundaNotaFiscal);
-		publisher.submit(terceiraNotaFiscal);
 		
 		System.out.println("Voca ira receber a nota fiscal no seu e-mail");
 		Scanner scan = new Scanner(System.in);
